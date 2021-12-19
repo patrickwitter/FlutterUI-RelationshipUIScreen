@@ -17,6 +17,7 @@ class ProfileWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Stack(
               children: [
@@ -44,30 +45,37 @@ class ProfileWidget extends StatelessWidget {
               ],
             ),
             SizedBox(height: 30),
-            Text(
-              (text == null) ? "Hello There!" : text,
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+            Flexible(
+              flex: 2,
+              child: Text(
+                (text == null) ? "Hello There!" : text,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             SizedBox(height: 20),
-            Text(
-              "Available for the next x hours",
-              textAlign: TextAlign.center,
+            Flexible(
+              flex: 2,
+              child: Text(
+                "Available for the next x hours",
+                textAlign: TextAlign.center,
+              ),
             ),
             SizedBox(height: 15),
-            Expanded(
-              child: Container(
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color:
-                      (this.color == Colors.green) ? Colors.green : Colors.grey,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10),
-                  ),
+            Container(
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color:
+                    (this.color == Colors.green) ? Colors.green : Colors.grey,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(10),
+                  bottomRight: Radius.circular(10),
                 ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: Text(
                   "Request",
                   style: TextStyle(

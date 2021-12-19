@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:relationshipuiapp/widgets/profileWidget.dart';
 import 'package:relationshipuiapp/widgets/titleHeader.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 void main() {
   runApp(RelationshipApp());
@@ -15,6 +16,12 @@ class RelationshipApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      builder: (context, widget) =>
+          ResponsiveWrapper.builder(widget, breakpoints: [
+        ResponsiveBreakpoint.resize(350, name: MOBILE),
+        ResponsiveBreakpoint.autoScale(600, name: TABLET),
+        ResponsiveBreakpoint.autoScale(1150, name: DESKTOP),
+      ]),
       home: HomePage(),
     );
   }
@@ -96,10 +103,21 @@ class Body extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: GridView.count(
         primary: false,
-        crossAxisCount: 2,
+        crossAxisCount: ResponsiveValue(context, defaultValue: 2, valueWhen: [
+          Condition.smallerThan(
+            name: MOBILE,
+            value: 1,
+          ),
+        ]).value,
         shrinkWrap: true,
         crossAxisSpacing: 5,
-        childAspectRatio: 2 / 3,
+        childAspectRatio:
+            ResponsiveValue(context, defaultValue: 1.0, valueWhen: [
+          Condition.equals(
+            name: MOBILE,
+            value: (2 / 3),
+          ),
+        ]).value.toDouble(),
         children: [
           ProfileWidget(
             color: Colors.red,
