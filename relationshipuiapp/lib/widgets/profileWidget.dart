@@ -64,27 +64,29 @@ class ProfileWidget extends StatelessWidget {
               ),
             ),
             SizedBox(height: 15),
-            Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color:
-                    (this.color == Colors.green) ? Colors.green : Colors.grey,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(10),
-                  bottomRight: Radius.circular(10),
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Request",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
+            LayoutBuilder(builder: (context, constraints) {
+              return Container(
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color:
+                      (this.color == Colors.green) ? Colors.green : Colors.grey,
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(10),
+                    bottomRight: Radius.circular(10),
                   ),
                 ),
-              ),
-            ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "Request",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              );
+            }),
           ],
         ),
       ),
