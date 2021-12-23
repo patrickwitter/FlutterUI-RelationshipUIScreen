@@ -117,6 +117,10 @@ class Body extends StatelessWidget {
             name: MOBILE,
             value: (2 / 3),
           ),
+          Condition.equals(
+            name: DESKTOP,
+            value: (3 / 1.4),
+          )
         ]).value.toDouble(),
         children: [
           ProfileWidget(

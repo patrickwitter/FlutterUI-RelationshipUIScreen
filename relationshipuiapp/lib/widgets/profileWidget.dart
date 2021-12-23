@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class ProfileWidget extends StatelessWidget {
   final Color color;
@@ -45,8 +46,14 @@ class ProfileWidget extends StatelessWidget {
               ],
             ),
             SizedBox(height: 30),
-            Flexible(
-              flex: 2,
+            LimitedBox(
+              maxHeight: ResponsiveValue(
+                context,
+                defaultValue: 100,
+                valueWhen: [
+                  Condition.equals(name: MOBILE, value: 50),
+                ],
+              ).value.toDouble(),
               child: Text(
                 (text == null) ? "Hello There!" : text,
                 style: TextStyle(
@@ -56,16 +63,17 @@ class ProfileWidget extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
-            Flexible(
-              flex: 2,
+            LimitedBox(
+              maxHeight: 20,
               child: Text(
                 "Available for the next x hours",
                 textAlign: TextAlign.center,
               ),
             ),
             SizedBox(height: 15),
-            LayoutBuilder(builder: (context, constraints) {
-              return Container(
+            Flexible(
+              child: Container(
+                constraints: BoxConstraints(maxHeight: 60),
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color:
@@ -85,8 +93,8 @@ class ProfileWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-              );
-            }),
+              ),
+            ),
           ],
         ),
       ),
